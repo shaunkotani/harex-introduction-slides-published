@@ -75,84 +75,21 @@
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitchTiles'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.075'/%3E%3C/svg%3E")
         }
 
-        /* 上部ナビ。各スライドの見出しを並べ、現在地を下線で示す */
-        .rail {
+        .progress {
             position: absolute;
-            z-index: 31;
+            z-index: 30;
             top: 0;
             left: 0;
             right: 0;
-            height: 30px;
-            display: flex;
-            align-items: stretch;
-            border-bottom: 1px solid var(--line);
-            background: var(--paper)
+            height: 5px;
+            background: var(--progress-bg)
         }
 
-        .rail button {
-            flex: 1 1 0;
-            min-width: 0;
-            appearance: none;
-            background: none;
-            border: 0;
-            padding: 0 6px;
-            font-family: var(--font);
-            font-size: 12px;
-            font-weight: 700;
-            letter-spacing: .01em;
-            color: var(--muted);
-            text-align: center;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            cursor: pointer;
-            transition: color .3s ease
-        }
-
-        .rail button:hover {
-            color: var(--ink)
-        }
-
-        .rail button[aria-current="true"] {
-            color: var(--ink);
-            font-weight: 900
-        }
-
-        .rail button:focus-visible {
-            outline: 2px solid var(--teal);
-            outline-offset: -4px
-        }
-
-        .rail-ind {
-            position: absolute;
-            left: 0;
-            bottom: -1px;
-            height: 3px;
-            width: 0;
+        .progress span {
+            display: block;
+            height: 100%;
             background: var(--teal);
-            transition: transform .38s cubic-bezier(.22, .61, .36, 1), width .38s cubic-bezier(.22, .61, .36, 1);
-            will-change: transform, width
-        }
-
-        /* 表紙はネイビー面なので反転する */
-        .stage:has(.cover.active) .rail {
-            background: none;
-            border-bottom-color: rgba(255, 255, 255, .22)
-        }
-
-        .stage:has(.cover.active) .rail button {
-            color: rgba(255, 255, 255, .58)
-        }
-
-        .stage:has(.cover.active) .rail button:hover,
-        .stage:has(.cover.active) .rail button[aria-current="true"] {
-            color: #fff
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            .rail-ind {
-                transition: none
-            }
+            transition: width .2s
         }
 
         .deck {
@@ -167,9 +104,7 @@
             inset: 0;
             display: grid;
             grid-template-rows: auto 1fr auto;
-            /* 上はレール(30px+境界線)、下はページ番号(上端692.8px)が枠。
-               その内側で上下の余白が均等になるよう、合計96pxは保ったまま帯を下げている */
-            padding: 50px 72px 46px;
+            padding: 44px 72px 52px;
             opacity: 0;
             visibility: hidden
         }
@@ -182,7 +117,7 @@
         .slide-no {
             position: absolute;
             right: 72px;
-            top: 40px;
+            top: 28px;
             font: 700 13px/1 ui-monospace, monospace;
             letter-spacing: .1em;
             color: var(--muted)
@@ -716,83 +651,6 @@
             margin: 20px 0 6px
         }
 
-        /* 発表内容の組み立て：好きなこと ＋ 専攻分野 */
-        .mixfig {
-            display: block;
-            width: 100%;
-            height: auto;
-            font-family: var(--font)
-        }
-
-        .mixfig .mf-main {
-            fill: var(--paper2);
-            stroke: var(--line);
-            stroke-width: 1.5
-        }
-
-        .mixfig .mf-sub {
-            fill: none;
-            stroke: var(--line);
-            stroke-width: 1.5;
-            stroke-dasharray: 7 6
-        }
-
-        .mixfig .mf-plus {
-            fill: var(--teal);
-            font-size: 40px;
-            font-weight: 900;
-            text-anchor: middle
-        }
-
-        .mixfig .mf-name {
-            fill: var(--ink);
-            font-weight: 900;
-            text-anchor: middle
-        }
-
-        .mixfig .mf-tag {
-            fill: var(--teal);
-            font-family: ui-monospace, monospace;
-            font-size: 10px;
-            font-weight: 800;
-            letter-spacing: .12em;
-            text-anchor: middle
-        }
-
-        .mix-note {
-            margin: 6px 0 0;
-            font-size: 13.5px;
-            line-height: 1.6;
-            color: var(--body);
-            text-align: center
-        }
-
-        /* 作例スケッチ共通のペン */
-        .of-sheet {
-            fill: var(--paper2);
-            stroke: var(--line);
-            stroke-width: 1.5
-        }
-
-        .of-ink {
-            fill: none;
-            stroke: var(--muted);
-            stroke-width: 2;
-            stroke-linecap: round
-        }
-
-        .of-block {
-            fill: var(--muted);
-            opacity: .3
-        }
-
-        .of-mini {
-            fill: none;
-            stroke: var(--muted);
-            stroke-width: 1.3;
-            opacity: .65
-        }
-
         /* ── 05 タイムライン ── */
         .schedule {
             align-self: center
@@ -942,21 +800,7 @@
         .prep-grid article {
             padding: 20px 22px;
             border-left: 1px solid var(--line);
-            min-height: 162px;
-            display: flex;
-            flex-direction: column
-        }
-
-        /* 各カードの作例。margin-top:auto でカード下端に揃える */
-        .prep-thumb {
-            margin-top: auto;
-            padding-top: 16px
-        }
-
-        .prep-thumb svg {
-            display: block;
-            width: 100%;
-            height: auto
+            min-height: 162px
         }
 
         .prep-grid article:first-child {
@@ -1391,17 +1235,17 @@
     <div class="wrap">
         <div class="stage" id="stage">
             <div class="grain" aria-hidden="true"></div>
-            <nav class="rail" id="rail" aria-label="スライド一覧"></nav>
+            <div class="progress" aria-hidden="true"><span></span></div>
             <main class="deck">
 
                 <!-- 01 表紙 -->
-                <section class="slide cover active" data-nav="はじめに">
+                <section class="slide cover active">
                     <span class="slide-no"></span>
                     <div class="cover-copy">
                         <div class="context key-only"><small>HAKURYO RESEARCH EXCHANGE</small></div>
                         <h1>HAREx</h1>
                         <p class="subtitle"><b>白陵研究交流会</b>大学とは、どういうところなのか。<br>
-                            卒業生の研究を入り口にして<span class="hl">白陵生</span>に紹介する一日です。</p>
+                            それを、卒業生の研究を入り口にして<span class="hl">白陵生</span>に紹介する一日です。</p>
                         <dl class="cover-meta">
                             <div>
                                 <dt>DATE</dt>
@@ -1414,6 +1258,10 @@
                             <div>
                                 <dt>DEADLINE</dt>
                                 <dd>発表参加の登録は <b>8月22日（土）</b> まで</dd>
+                            </div>
+                            <div>
+                                <dt>CONTACT</dt>
+                                <dd><b>大谷駿介</b>　<small>LINE ／ u618412k@ecs.osaka-u.ac.jp</small></dd>
                             </div>
                         </dl>
                     </div>
@@ -1445,9 +1293,9 @@
                 </section>
 
                 <!-- 02 どんなイベントか -->
-                <section class="slide" data-nav="会場の様子"><span class="slide-no"></span>
+                <section class="slide"><span class="slide-no"></span>
                     <header class="slide-head">
-                        <div class="context">当日の会場の様子 <small>OPEN FORMAT</small></div>
+                        <div class="context">まず、当日の会場の様子からご覧ください <small>OPEN FORMAT</small></div>
                         <h2>4つの企画が同時に動き、在校生が<span class="mark">好きなところへ出入りします</span></h2>
                     </header>
                     <div class="two-col">
@@ -1528,9 +1376,9 @@
                 </section>
 
                 <!-- 03 発表の形 -->
-                <section class="slide" data-nav="発表形式"><span class="slide-no"></span>
+                <section class="slide"><span class="slide-no"></span>
                     <header class="slide-head">
-                        <div class="context">3つの発表形式 <small>THREE STYLES</small></div>
+                        <div class="context">どの形で話すかを自由に選べます <small>THREE STYLES</small></div>
                         <h2>講演・展示・ワークショップ。<span class="mark">一番興味があるものを。</span></h2>
                     </header>
                     <div class="tri">
@@ -1565,9 +1413,9 @@
                                     <h3>展示会</h3>
                                 </div>
                             </div>
-                            <p>ポスターや動画などで見に来た生徒に説明します。</p>
+                            <p>ポスターや動画、スライドなどで見に来た生徒に説明します。</p>
                             <p class="tri-time">時間：前半と後半のシフト制</p>
-                            <p>お菓子などを置いて、雑談に近い雰囲気で行います。</p>
+                            <p>お菓子と飲み物を置いて、雑談に近い雰囲気を想定しています。</p>
                         </article>
                         <article class="tri-card tri-c">
                             <div class="tri-head"><span class="tri-ico"><svg viewBox="0 0 24 24">
@@ -1583,17 +1431,67 @@
                             </div>
                             <p>生徒自身が手を動かして体験できる形です。</p>
                             <p class="tri-time">時間：指定はありません</p>
-                            <p>内容や進め方などは完全に自由です。</p>
+                            <p>内容や進め方など可能性は無限大です。</p>
                         </article>
                         <!-- <div class="tri-hub">自由回遊スタイル<small>複数の形式を掛け持ちしても構いません</small></div> -->
                         <div class="tri-hub">複数の掛け持ち可能です</div>
                     </div>
+                    <footer class="footer">話す内容はどれも自由です。次のスライドで詳しくご説明します。</footer>
                 </section>
 
-                <!-- 04 当日の流れ -->
-                <section class="slide" data-nav="当日の流れ"><span class="slide-no"></span>
+                <!-- 04 話す内容 -->
+                <section class="slide"><span class="slide-no"></span>
                     <header class="slide-head">
-                        <div class="context">タイムスケジュール <small>EVENT SCHEDULE</small></div>
+                        <div class="context">内容は完全にあなた次第です <small>WHAT TO SHARE</small></div>
+                        <h2>
+                            研究室のテーマに限らず、<br>
+                            <span class="mark">自分なりに考え、試してきたこと</span>を持ち寄ってください🔥
+                        </h2>
+                    </header>
+
+                    <div class="two-col">
+                        <div class="copy">
+                            <p>
+                                HARExでは研究を、単に大学で行われている専門的な活動として捉えません。<br>
+                            </p>
+
+                            <p>
+                                そのため、大学での研究テーマ以外でも、<b>私生活で試行錯誤したことや、個人的に突き詰めてきたことも大歓迎です。</b>
+                            </p>
+
+                            <p>
+                                ただ一つ、<b>ご自身の専攻分野がどんな世界なのか</b>も少し紹介してください。<br>
+                                大学のHPにある説明を引っ張ってくるだけでも十分です。<br>
+                                中高生にとって、研究を幅広く捉える機会となり、進路選びの参考になることを期待しています。
+                            </p>
+                        </div>
+
+                        <div>
+                            <blockquote class="big-message quote">
+                                研究とは、<br>
+                                検証の過程を何度も経て、<br>
+                                本質に迫る過程そのもの。
+                            </blockquote>
+
+                            <p class="topics-label">たとえば</p>
+                            <div class="topics">
+                                <div>研究室での研究</div>
+                                <div>卒論で取り組んだこと</div>
+                                <div>趣味を突き詰めた話</div>
+                                <div>私生活で試行錯誤したこと</div>
+                                <div>個人的に調べ続けていること</div>
+                                <div>専攻分野の面白さ／難しさ</div>
+                            </div>
+                        </div>
+                    </div>
+                    <footer class="footer">専門的な話の場合、中高生向けに優しく解説があると聞きやすいと思われますが、可能な範囲で大丈夫です。</footer>
+                </section>
+
+
+                <!-- 05 当日の流れ -->
+                <section class="slide"><span class="slide-no"></span>
+                    <header class="slide-head">
+                        <div class="context">当日の2時間半を、時間の流れで見てみます <small>EVENT SCHEDULE</small></div>
                         <h2>2時間半のあいだ、<span class="mark">4つの企画が並行して動きます</span></h2>
                     </header>
                     <div class="schedule">
@@ -1639,67 +1537,10 @@
                     <footer class="footer">発表者自身も自由回遊スタイルで、他の発表を見ることもできます。</footer>
                 </section>
 
-                <!-- 05 話す内容 -->
-                <section class="slide" data-nav="発表内容"><span class="slide-no"></span>
-                    <header class="slide-head">
-                        <div class="context"> 発表内容について <small>WHAT TO SHARE</small></div>
-                        <h2>
-                            研究室のテーマに限らず、<br>
-                            <span class="mark">自分なりに考え、試してきたこと</span>を持ち寄ってください🔥
-                        </h2>
-                    </header>
-
-                    <div class="two-col">
-                        <div class="copy">
-                            <p>
-                                HARExでは研究を、単に大学で行われている専門的な活動として捉えません。<br>
-                            </p>
-
-                            <p>
-                                そのため、大学での研究テーマ以外でも、<b>私生活で試行錯誤したことや、個人的に突き詰めてきたことも大歓迎です。</b>
-                            </p>
-
-                            <p>
-                                ただ一つ、<b>ご自身の専攻分野がどんな世界なのか</b>も少し紹介してください。<br>
-                                大学のHPにある説明を引っ張ってくるだけでも十分です。<br>
-                                中高生にとって、研究を幅広く捉える機会となり、進路選びの参考になることを期待しています。
-                            </p>
-                        </div>
-
-                        <div>
-                            <svg class="mixfig" viewBox="0 0 560 168" role="img"
-                                aria-label="大きな「研究トピック」の円と、小さな「専攻分野」の円を足したものが発表内容">
-                                <circle class="mf-main" cx="182" cy="84" r="80" />
-                                <text class="mf-tag" x="182" y="68">MAIN</text>
-                                <text class="mf-name" x="182" y="96" font-size="23">研究トピック</text>
-                                <text class="mf-plus" x="298" y="98">＋</text>
-                                <circle class="mf-sub" cx="396" cy="84" r="54" />
-                                <text class="mf-tag" x="396" y="72">+α</text>
-                                <text class="mf-name" x="396" y="96" font-size="20">専攻分野</text>
-                            </svg>
-                            <p class="mix-note">2つが重なっても重なっていなくても、どちらでもOK。</p>
-
-                            <p class="topics-label">「研究トピック」の例</p>
-                            <div class="topics">
-                                <div>研究室での研究</div>
-                                <div>卒論で取り組んだこと</div>
-                                <div>趣味を突き詰めた話</div>
-                                <div>私生活で試行錯誤したこと</div>
-                                <div>個人的に調べ続けていること</div>
-                                <div>専攻分野の面白さ／難しさ</div>
-                            </div>
-                        </div>
-                    </div>
-                    <footer class="footer">専門的な話の場合、中高生向けに優しく解説があると聞きやすいと思われますが、可能な範囲で大丈夫です。</footer>
-                </section>
-
-
-
-
                 <!-- 06 準備 -->
-                <section class="slide" data-nav="資料の準備"><span class="slide-no"></span>
+                <section class="slide"><span class="slide-no"></span>
                     <header class="slide-head">
-                        <div class="context">発表資料の準備について<small>PREPARATION</small></div>
+                        <div class="context">準備は気負わずできる範囲で<small>PREPARATION</small></div>
                         <h2>
                             アットホームな雰囲気で開催するので<br>
                             <span class="mark">完璧なスライドやポスターは不要です</span>
@@ -1709,99 +1550,81 @@
                         <p style="font-size:19px;max-width:980px">
                             スライドやポスターは <b>最小限で構いません</b>。<br>
                             動画や実物を用いた説明も自由に可能です。<br>
-                            <b>なお、発表資料は運営側で管理しないため、開催までに各自でご準備・ご持参をお願いします。</b>
+                            なお、発表内容に関するデータは運営側で管理しないため、開催までに各自でご準備・ご持参をお願いします。
                         </p>
-
-
                         <div class="prep-grid">
                             <article>
                                 <h3>スライドを使う場合</h3>
-                                <p><b>PCはご自身のものをご持参ください。</b>講演で使ったスライドは、全体または要所を印刷していただき、展示室にも掲示する予定です。
+                                <p><b>PCはご自身のものをご持参ください。</b>プロジェクターへはHDMIで接続します。講演で使ったスライドは、全体または要所を印刷して展示にも掲示する予定です。
                                 </p>
-                                <div class="prep-thumb">
-                                    <svg viewBox="0 0 340 96" role="img" aria-label="簡素なスライドと、図表を入れたスライドの作例">
-                                        <rect class="of-sheet" x="8" y="6" width="150" height="84" />
-                                        <rect class="of-block" x="22" y="22" width="64" height="9" />
-                                        <rect class="of-block" x="22" y="44" width="112" height="5" />
-                                        <rect class="of-block" x="22" y="54" width="88" height="5" />
-                                        <rect class="of-sheet" x="182" y="6" width="150" height="84" />
-                                        <rect class="of-block" x="196" y="20" width="72" height="8" />
-                                        <rect class="of-block" x="196" y="38" width="60" height="4" />
-                                        <rect class="of-block" x="196" y="46" width="60" height="4" />
-                                        <rect class="of-block" x="196" y="54" width="48" height="4" />
-                                        <rect class="of-mini" x="266" y="36" width="52" height="40" />
-                                        <g class="of-block">
-                                            <rect x="272" y="62" width="8" height="10" />
-                                            <rect x="284" y="54" width="8" height="18" />
-                                            <rect x="296" y="58" width="8" height="14" />
-                                        </g>
-                                    </svg>
-                                </div>
                             </article>
                             <article>
                                 <h3>ポスターを使う場合</h3>
-                                <p>各自で印刷してご持参ください。印刷したスライドを並べる形でも構いません。印刷が難しい場合はご相談ください。</p>
-                                <div class="prep-thumb">
-                                    <svg viewBox="0 0 340 96" role="img"
-                                        aria-label="縦長のポスター2種。印刷したスライドを並べたものと、大判ポスターの作例">
-                                        <rect class="of-sheet" x="94" y="3" width="64" height="90" />
-                                        <rect class="of-block" x="100" y="10" width="52" height="6" />
-                                        <g class="of-mini">
-                                            <rect x="100" y="22" width="24" height="18" />
-                                            <rect x="128" y="22" width="24" height="18" />
-                                            <rect x="100" y="44" width="24" height="18" />
-                                            <rect x="128" y="44" width="24" height="18" />
-                                            <rect x="100" y="66" width="24" height="18" />
-                                            <rect x="128" y="66" width="24" height="18" />
-                                        </g>
-                                        <rect class="of-sheet" x="182" y="3" width="64" height="90" />
-                                        <g class="of-block">
-                                            <rect x="188" y="10" width="52" height="7" />
-                                            <rect x="188" y="24" width="24" height="3" />
-                                            <rect x="188" y="30" width="24" height="3" />
-                                            <rect x="188" y="36" width="20" height="3" />
-                                            <rect x="216" y="24" width="24" height="3" />
-                                            <rect x="216" y="30" width="18" height="3" />
-                                        </g>
-                                        <rect class="of-mini" x="188" y="44" width="52" height="22" />
-                                        <g class="of-block">
-                                            <rect x="194" y="56" width="8" height="8" />
-                                            <rect x="206" y="50" width="8" height="14" />
-                                            <rect x="218" y="54" width="8" height="10" />
-                                            <rect x="188" y="72" width="52" height="3" />
-                                            <rect x="188" y="78" width="38" height="3" />
-                                        </g>
-                                    </svg>
-                                </div>
+                                <p>各自で印刷してご持参ください。印刷したスライドを引っ付けて並べる形でも構いません。印刷が難しい場合はご相談ください。</p>
                             </article>
                             <article>
                                 <h3>実物を見せる場合</h3>
-                                <p>実物を持ち込んでの実演もできます。実物については、ご自身で保管・管理をお願いいたします。</p>
-                                <div class="prep-thumb">
-                                    <svg viewBox="0 0 340 96" role="img" aria-label="机に置いた実物を見てもらう様子と、動かして実演する様子">
-                                        <rect class="of-sheet" x="8" y="6" width="150" height="84" />
-                                        <rect class="of-block" x="46" y="46" width="42" height="26" />
-                                        <circle class="of-block" cx="118" cy="42" r="9" />
-                                        <path class="of-block" d="M105,72 a13,13 0 0 1 26,0 Z" />
-                                        <path class="of-ink" d="M24,72 L142,72 M36,72 L36,82 M130,72 L130,82" />
-                                        <rect class="of-sheet" x="182" y="6" width="150" height="84" />
-                                        <circle class="of-block" cx="206" cy="42" r="9" />
-                                        <path class="of-block" d="M193,72 a13,13 0 0 1 26,0 Z" />
-                                        <rect class="of-block" x="230" y="44" width="40" height="28" rx="3" />
-                                        <path class="of-ink" d="M281,48 q7,14 0,28 M292,41 q11,20 0,42" />
-                                        <path class="of-ink" d="M196,72 L306,72" />
-                                    </svg>
-                                </div>
+                                <p><b>危険を伴わない範囲で</b>、実物を持ち込んでの実演もできます。広さや電源が必要になりそうなときは、事前にお知らせください。</p>
                             </article>
                         </div>
                     </div>
                 </section>
 
-                <!-- 07 登録 -->
-                <section class="slide" data-nav="参加登録"><span class="slide-no"></span>
+                <!-- 07 設備 -->
+                <section class="slide"><span class="slide-no"></span>
                     <header class="slide-head">
-                        <div class="context">参加登録の方法 <small>REGISTRATION</small></div>
-                        <h2>右のQRコードから。<br>
+                        <div class="context">会場にある設備一覧 <small>AVAILABLE EQUIPMENT</small></div>
+                        <h2><span class="mark">PCと発表物をご持参ください</span></h2>
+                    </header>
+                    <div class="equip">
+                        <div class="equip-grid">
+                            <div class="equip-card"><span class="icon"><svg viewBox="0 0 24 24">
+                                        <rect x="2.5" y="7" width="14" height="10" rx="1.5" />
+                                        <circle cx="9.5" cy="12" r="2.6" />
+                                        <path d="M17.5 10.5l4-2.5M17.5 13.5l4 2.5" />
+                                    </svg></span><b>HDMIプロジェクター</b></div>
+                            <div class="equip-card"><span class="icon"><svg viewBox="0 0 24 24">
+                                        <path d="M13 2L5 13.5h5.5L10 22l8-11.5h-5.5z" />
+                                    </svg></span><b>電源</b></div>
+                            <div class="equip-card"><span class="icon"><svg viewBox="0 0 24 24">
+                                        <rect x="2.5" y="4" width="19" height="12" rx="1" />
+                                        <path d="M6 12.5h6M6 16l-1.5 5M18 16l1.5 5" />
+                                    </svg></span><b>黒板</b></div>
+                            <div class="equip-card"><span class="icon"><svg viewBox="0 0 24 24">
+                                        <rect x="2.5" y="7.5" width="19" height="3.5" rx="1" />
+                                        <path d="M5.5 11v9M18.5 11v9" />
+                                    </svg></span><b>展示机</b></div>
+                            <div class="equip-card"><span class="icon"><svg viewBox="0 0 24 24">
+                                        <rect x="3.5" y="3" width="17" height="13" rx="1" />
+                                        <rect x="6" y="5.5" width="5" height="4.5" />
+                                        <rect x="13" y="5.5" width="5" height="4.5" />
+                                        <path d="M7 16l-1.5 5M17 16l1.5 5" />
+                                    </svg></span><b>展示ボード</b></div>
+                            <div class="equip-card"><span class="icon"><svg viewBox="0 0 24 24">
+                                        <path
+                                            d="M2.5 8.5a14 14 0 0 1 19 0M6 12.5a9.5 9.5 0 0 1 12 0M9.5 16.5a5 5 0 0 1 5 0" />
+                                        <circle cx="12" cy="20" r="1.3" fill="currentColor" stroke="none" />
+                                    </svg></span><b>Wi‑Fi</b></div>
+                        </div>
+                        <div class="copy">
+                            <h3>ご自身で持ってくるもの</h3>
+                            <ul class="plain-list">
+                                <li><b>PC本体</b>（運営では用意しません）</li>
+                                <li>発表に使うデータ</li>
+                                <li>ポスター等の印刷物</li>
+                                <li>実演に使う機材</li>
+                            </ul>
+                            <p style="margin-top:15px;font-size:15px">
+                                HDMI以外の端子をお使いの場合は、変換アダプタもお持ちください。特殊な機材や広いスペースが必要なときは、事前に大谷までご相談ください。</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 08 登録 -->
+                <section class="slide"><span class="slide-no"></span>
+                    <header class="slide-head">
+                        <div class="context">参加登録の方法を説明します <small>REGISTRATION</small></div>
+                        <h2>QRコードから。<br>
                             <span class="mark">変更修正はいつでも可能です。</span>
                         </h2>
                     </header>
@@ -1826,8 +1649,8 @@
                     </div>
                 </section>
 
-                <!-- 08 最後に -->
-                <section class="slide ending" data-nav="最後に"><span class="slide-no"></span>
+                <!-- 09 最後に -->
+                <section class="slide ending"><span class="slide-no"></span>
                     <div>
                         <div class="context">HARExは校内限定イベントです <small>WHAT WE WANT TO SHARE</small></div>
                         <h2>それぞれの<span class="mark">「大学生のリアル」</span>を、<br> <span class="mark">研究を題材に</span>持ち寄る場</h2>
@@ -1836,18 +1659,20 @@
                             進路選びの参考になることを期待しています。
                         </p>
                         <p class="last">友達と母校で集まれる場としてもご活用ください。</p>
-                        <p class="contact-label">質問や気になる点はこちらまで：</p>
+                        <p class="contact-label">質問や気になる点は：</p>
                         <div class="contact"><span>LINE：大谷駿介</span><span>Mail：u618412k@ecs.osaka-u.ac.jp</span></div>
+                        <p class="contact-label">すぐに返信します！</p>
                     </div>
                 </section>
 
                 <!-- A1 当日の補足 -->
-                <section class="slide" data-nav="補足"><span class="slide-no"></span>
+                <section class="slide"><span class="slide-no"></span>
                     <header class="slide-head">
                         <div class="context key-only"><small>EVENT NOTES</small></div>
-                        <h2>当日の補足</h2>
+                        <h2>いくつか<span class="mark">補足です</span></h2>
                     </header>
                     <div style="display:grid;align-content:center">
+                        <p class="lede">撮影の可否・PDFへの掲載可否・名刺の記載内容は、後日まとめてアンケートで伺います。いま決めていただくことはありません。</p>
                         <div class="appendix-grid">
                             <article>
                                 <h3>発表内容の注意点</h3>
@@ -1868,11 +1693,10 @@
                             </article>
                         </div>
                     </div>
-                    <footer class="footer">撮影の可否・PDFへの掲載可否・名刺の記載内容は、後日まとめてアンケートで伺います。</footer>
                 </section>
 
                 <!-- A2 運営メンバー -->
-                <section class="slide" data-nav="運営メンバー"><span class="slide-no"></span>
+                <section class="slide"><span class="slide-no"></span>
                     <header class="slide-head">
                         <div class="context key-only"><small>STAFF PARTICIPATION</small></div>
                         <h2><span class="mark">運営メンバー募集中</span></h2>
@@ -1881,7 +1705,7 @@
                         <div>
                             <p style="font-size:19px">
                                 イベント内容の充実、開催に向けた準備、当日の裏方作業などをするメンバーを募集しています。<br>
-                                <b>発表なしでも登録することが可能ですので、当日発表なしで参加されたい方もぜひ運営メンバーに加わってください！</b>
+                                <b>発表なしでも登録することが可能です</b>ので、当日発表なしで参加されたい方もぜひ運営メンバーに加わってください！
                             </p>
                             <ul class="plain-list">
                                 <li>参加者の受付・把握</li>
@@ -1908,26 +1732,10 @@
         </div>
     </div>
     <script>
-        const W = 1280, H = 720, stage = document.querySelector('#stage'), slides = [...document.querySelectorAll('.slide')], counter = document.querySelector('.counter'), rail = document.querySelector('#rail'); let current = 0, touchX = 0;
-        // 上部ナビを slides から生成する。ラベルは各 section の data-nav
-        const railInd = document.createElement('span'); railInd.className = 'rail-ind';
-        const railBtns = slides.map((slide, i) => {
-            const b = document.createElement('button');
-            b.type = 'button';
-            b.textContent = slide.dataset.nav || String(i + 1).padStart(2, '0');
-            b.addEventListener('click', () => show(i));
-            rail.appendChild(b); return b;
-        });
-        rail.appendChild(railInd);
-        function syncRail(i) {
-            railBtns.forEach((b, n) => b.setAttribute('aria-current', n === i ? 'true' : 'false'));
-            const b = railBtns[i]; if (!b) return;
-            railInd.style.width = b.offsetWidth + 'px';
-            railInd.style.transform = `translateX(${b.offsetLeft}px)`;
-        }
+        const W = 1280, H = 720, stage = document.querySelector('#stage'), slides = [...document.querySelectorAll('.slide')], counter = document.querySelector('.counter'), bar = document.querySelector('.progress span'); let current = 0, touchX = 0;
         function fit() { const s = Math.min(innerWidth / W, innerHeight / H), x = (innerWidth - W * s) / 2, y = (innerHeight - H * s) / 2; stage.style.transform = `translate(${x}px,${y}px) scale(${s})` }
         slides.forEach((slide, i) => { const n = slide.querySelector('.slide-no'); if (n) n.textContent = String(i + 1).padStart(2, '0') });
-        function show(i) { i = Math.max(0, Math.min(slides.length - 1, i)); slides.forEach((s, n) => s.classList.toggle('active', n === i)); current = i; counter.textContent = `${String(i + 1).padStart(2, '0')} / ${String(slides.length).padStart(2, '0')}`; syncRail(i); history.replaceState(null, '', `#slide-${i + 1}`) }
+        function show(i) { i = Math.max(0, Math.min(slides.length - 1, i)); slides.forEach((s, n) => s.classList.toggle('active', n === i)); current = i; counter.textContent = `${String(i + 1).padStart(2, '0')} / ${String(slides.length).padStart(2, '0')}`; bar.style.width = `${(i + 1) / slides.length * 100}%`; history.replaceState(null, '', `#slide-${i + 1}`) }
         addEventListener('resize', fit, { passive: true }); addEventListener('orientationchange', () => setTimeout(fit, 80)); if (window.visualViewport) visualViewport.addEventListener('resize', fit, { passive: true });
         addEventListener('keydown', e => { if (['ArrowRight', 'ArrowDown', ' '].includes(e.key)) { e.preventDefault(); show(current + 1) } if (['ArrowLeft', 'ArrowUp'].includes(e.key)) { e.preventDefault(); show(current - 1) } if (e.key === 'Home') show(0); if (e.key === 'End') show(slides.length - 1) });
         addEventListener('touchstart', e => touchX = e.touches[0].clientX, { passive: true }); addEventListener('touchend', e => { const dx = e.changedTouches[0].clientX - touchX; if (Math.abs(dx) > 50) show(current + (dx < 0 ? 1 : -1)) }, { passive: true });
