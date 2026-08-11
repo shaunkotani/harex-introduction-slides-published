@@ -1,0 +1,1748 @@
+<!doctype html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+    <meta name="theme-color" content="#343536">
+    <title>HAREx 開催概要｜白陵研究交流会（チラシ配色版）</title>
+    <style>
+        /* 配色は発表者チラシv02（ネイビー／コーラル／シアン／レッド）に準拠 */
+        :root {
+            --stage-w: 1280;
+            --stage-h: 720;
+            --paper: #ffffff;
+            --paper2: #f2f5fb;
+            --ink: #16224d;
+            --body: #3c4463;
+            --muted: #78809b;
+            --teal: #e0392e;
+            --lime: #283e94;
+            --warm: #ff766b;
+            --line: rgba(22, 34, 77, .19);
+            --marker: rgba(255, 118, 107, .32);
+            --progress-bg: rgba(22, 34, 77, .10);
+            --surround: #0d1936;
+            --navy-deep: #1b337f;
+            --navy: #283e94;
+            --navy-steel: #2a5480;
+            --cyan: #00eeff;
+            --font: "Noto Sans JP", "Yu Gothic", "Hiragino Kaku Gothic ProN", system-ui, sans-serif
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html,
+        body {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: var(--surround)
+        }
+
+        body {
+            font-family: var(--font);
+            color: var(--ink)
+        }
+
+        .wrap {
+            position: fixed;
+            inset: 0;
+            overflow: hidden
+        }
+
+        .stage {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 1280px;
+            height: 720px;
+            transform-origin: 0 0;
+            background: var(--paper);
+            box-shadow: 0 20px 70px rgba(0, 0, 0, .4);
+            overflow: hidden
+        }
+
+        .grain {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+            opacity: .15;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitchTiles'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.075'/%3E%3C/svg%3E")
+        }
+
+        .progress {
+            position: absolute;
+            z-index: 30;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: var(--progress-bg)
+        }
+
+        .progress span {
+            display: block;
+            height: 100%;
+            background: var(--teal);
+            transition: width .2s
+        }
+
+        .deck {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            z-index: 2
+        }
+
+        .slide {
+            position: absolute;
+            inset: 0;
+            display: grid;
+            grid-template-rows: auto 1fr auto;
+            padding: 44px 72px 52px;
+            opacity: 0;
+            visibility: hidden
+        }
+
+        .slide.active {
+            opacity: 1;
+            visibility: visible
+        }
+
+        .slide-no {
+            position: absolute;
+            right: 72px;
+            top: 28px;
+            font: 700 13px/1 ui-monospace, monospace;
+            letter-spacing: .1em;
+            color: var(--muted)
+        }
+
+        .slide-head {
+            padding-top: 6px
+        }
+
+        .context {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 25px;
+            font-weight: 850;
+            line-height: 1.2;
+            letter-spacing: .015em;
+            margin-bottom: 15px
+        }
+
+        .context:before {
+            content: "";
+            width: 9px;
+            height: 30px;
+            background: var(--lime);
+            flex: 0 0 auto
+        }
+
+        .context small {
+            font: 750 12px/1 ui-monospace, monospace;
+            letter-spacing: .12em;
+            color: var(--teal);
+            margin-left: 4px;
+            white-space: nowrap
+        }
+
+        .context.key-only {
+            gap: 13px
+        }
+
+        h1,
+        h2,
+        h3,
+        p {
+            margin-top: 0
+        }
+
+        h1 {
+            font-size: 74px;
+            line-height: 1.02;
+            letter-spacing: -.045em;
+            margin-bottom: 16px;
+            font-weight: 900
+        }
+
+        h2 {
+            font-size: 40px;
+            line-height: 1.24;
+            letter-spacing: -.025em;
+            margin: 0;
+            font-weight: 840
+        }
+
+        h3 {
+            font-size: 22px;
+            line-height: 1.35;
+            margin: 0 0 9px;
+            font-weight: 800
+        }
+
+        p {
+            font-size: 17px;
+            line-height: 1.62;
+            color: var(--body)
+        }
+
+        .mark {
+            padding: 0 .06em;
+            background: linear-gradient(transparent 55%, var(--marker) 55%, var(--marker) 91%, transparent 91%)
+        }
+
+        .accent {
+            color: var(--teal)
+        }
+
+        .footer {
+            align-self: end;
+            border-top: 1px solid var(--line);
+            padding-top: 11px;
+            font-size: 13px;
+            line-height: 1.55;
+            color: var(--muted)
+        }
+
+        .footer p {
+            margin: 0;
+            font-size: 13px;
+            color: var(--muted)
+        }
+
+        .lede {
+            font-weight: 850;
+            font-size: 17px;
+            color: var(--ink);
+            margin: 0 0 14px;
+            line-height: 1.5
+        }
+
+        /* ── 表紙 ── */
+        .cover {
+            grid-template-rows: 1fr auto
+        }
+
+        .cover-copy {
+            position: relative;
+            z-index: 4;
+            width: 672px;
+            align-self: center
+        }
+
+        .cover .subtitle {
+            font-size: 21px;
+            font-weight: 650;
+            color: var(--body);
+            line-height: 1.6;
+            margin-bottom: 0
+        }
+
+        .cover .subtitle b {
+            display: block;
+            font-size: 25px;
+            font-weight: 850;
+            color: var(--ink);
+            letter-spacing: .02em;
+            margin-bottom: 7px
+        }
+
+        .cover-meta {
+            margin: 26px 0 0;
+            border-top: 1px solid var(--line)
+        }
+
+        .cover-meta div {
+            display: grid;
+            grid-template-columns: 72px 1fr;
+            gap: 14px;
+            align-items: baseline;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--line)
+        }
+
+        .cover-meta dt {
+            font: 750 11px/1.7 ui-monospace, monospace;
+            letter-spacing: .11em;
+            color: var(--teal)
+        }
+
+        .cover-meta dd {
+            margin: 0;
+            font-size: 16px;
+            color: var(--body)
+        }
+
+        .cover-meta b {
+            color: var(--ink);
+            font-weight: 850
+        }
+
+        .cover-meta small {
+            font-size: 13px;
+            color: var(--muted)
+        }
+
+        .cover-art {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 650px;
+            height: 720px;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--paper2), #dedbd4)
+        }
+
+        .cover-art:after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, var(--paper) 0%, rgba(243, 241, 235, .88) 14%, transparent 34%)
+        }
+
+        .cover-art svg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            font-family: var(--font)
+        }
+
+        .cover .footer {
+            position: relative;
+            z-index: 5;
+            max-width: 890px
+        }
+
+        .notice {
+            margin: 6px 0 0;
+            font-size: 11px;
+            line-height: 1.5;
+            color: var(--muted);
+            opacity: .9
+        }
+
+        .art-credit {
+            margin: 6px 0 0;
+            font-size: 10.5px;
+            color: var(--muted);
+            opacity: .8
+        }
+
+        /* ── 汎用レイアウト ── */
+        .two-col {
+            display: grid;
+            grid-template-columns: .92fr 1.08fr;
+            gap: 42px;
+            align-items: center
+        }
+
+        .copy p {
+            font-size: 18px
+        }
+
+        .plain-list {
+            list-style: none;
+            margin: 16px 0 0;
+            padding: 0;
+            border-top: 1px solid var(--line)
+        }
+
+        .plain-list li {
+            position: relative;
+            padding: 10px 0 10px 19px;
+            border-bottom: 1px solid var(--line);
+            font-size: 16.5px;
+            color: var(--body)
+        }
+
+        .plain-list li:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: calc(50% - 3px);
+            width: 6px;
+            height: 6px;
+            background: var(--teal)
+        }
+
+        .plain-list b {
+            color: var(--ink);
+            font-weight: 850
+        }
+
+        /* ── 02 会場平面図 ── */
+        .venue {
+            display: block;
+            width: 100%;
+            height: auto;
+            font-family: var(--font)
+        }
+
+        .venue .vn-corr {
+            fill: rgba(39, 37, 34, .05)
+        }
+
+        .venue .vn-room {
+            fill: var(--paper2)
+        }
+
+        .venue .vn-wall {
+            fill: none;
+            stroke: var(--ink);
+            stroke-width: 2;
+            stroke-linecap: square
+        }
+
+        .venue .vn-prop {
+            fill: none;
+            stroke: var(--muted);
+            stroke-width: 1.5
+        }
+
+        .venue .vn-name {
+            fill: var(--ink);
+            font-size: 16px;
+            font-weight: 800
+        }
+
+        .venue .vn-key {
+            fill: var(--teal);
+            font-family: ui-monospace, monospace;
+            font-size: 9.5px;
+            font-weight: 700;
+            letter-spacing: .08em
+        }
+
+        .venue .vn-you {
+            fill: var(--teal)
+        }
+
+        .venue .vn-alum {
+            fill: var(--ink)
+        }
+
+        .venue .vn-move {
+            stroke: var(--teal);
+            stroke-width: 2;
+            fill: none;
+            marker-start: url(#vnA);
+            marker-end: url(#vnA)
+        }
+
+        .venue marker path {
+            fill: var(--teal)
+        }
+
+        .venue .vn-leg {
+            fill: var(--muted);
+            font-size: 11.5px;
+            font-weight: 650
+        }
+
+        /* ── 03 三角配置 ── */
+        .tri {
+            position: relative;
+            height: 436px;
+            align-self: center
+        }
+
+        .tri-lines {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%
+        }
+
+        .tri-lines polygon {
+            fill: none;
+            stroke: var(--line);
+            stroke-width: 1.5;
+            stroke-dasharray: 6 8
+        }
+
+        .tri-card {
+            position: absolute;
+            width: 404px;
+            min-height: 174px;
+            border: 1px solid var(--line);
+            background: var(--paper2);
+            padding: 17px 20px
+        }
+
+        .tri-a {
+            left: 50%;
+            transform: translateX(-50%);
+            top: 0
+        }
+
+        .tri-b {
+            left: 0;
+            bottom: 0
+        }
+
+        .tri-c {
+            right: 0;
+            bottom: 0
+        }
+
+        .tri-head {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            margin-bottom: 9px
+        }
+
+        .tri-ico {
+            width: 30px;
+            height: 30px;
+            flex: 0 0 auto;
+            color: var(--teal)
+        }
+
+        .tri-ico svg {
+            width: 100%;
+            height: 100%;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 1.7;
+            stroke-linecap: round;
+            stroke-linejoin: round
+        }
+
+        .tri-card h3 {
+            font-size: 23px;
+            margin: 0
+        }
+
+        .tri-card .num {
+            font: 800 11px ui-monospace, monospace;
+            color: var(--teal);
+            letter-spacing: .1em;
+            display: block;
+            margin-bottom: 2px
+        }
+
+        .tri-card p {
+            font-size: 14.5px;
+            line-height: 1.6;
+            margin: 0 0 6px
+        }
+
+        .tri-card p:last-child {
+            margin-bottom: 0
+        }
+
+        .tri-time {
+            font-weight: 800;
+            color: var(--ink) !important;
+            border-left: 3px solid var(--teal);
+            padding-left: 9px
+        }
+
+        .tri-hub {
+            position: absolute;
+            left: 50%;
+            top: 262px;
+            transform: translate(-50%, -50%);
+            background: var(--ink);
+            color: #fff;
+            padding: 13px 26px;
+            text-align: center;
+            font-size: 20px;
+            font-weight: 850;
+            line-height: 1.3;
+            white-space: nowrap
+        }
+
+        .tri-hub small {
+            display: block;
+            font-size: 11.5px;
+            font-weight: 600;
+            opacity: .72;
+            margin-top: 4px
+        }
+
+        /* ── 04 話す内容 ── */
+        .big-message {
+            font-size: 33px;
+            line-height: 1.36;
+            font-weight: 900;
+            letter-spacing: -.03em;
+            margin: 0;
+        }
+
+        /* 引用風の見せ方。日本語の約物にならい、隅付きの鉤括弧で囲う。
+           和文書体に真の斜体はなく、italic指定は機械的に傾けた偽斜体になるため使わない。 */
+        .big-message.quote {
+            position: relative;
+            margin: 0;
+            /* 鉤括弧が本文に寄り添うよう、最長行の幅に合わせて枠を縮める */
+            width: fit-content;
+            max-width: 100%;
+            padding: 30px 38px 32px;
+            font-size: 30px;
+            line-height: 1.55;
+            font-weight: 900;
+            font-style: normal;
+            letter-spacing: -.02em;
+            color: var(--ink);
+        }
+
+        .big-message.quote:before,
+        .big-message.quote:after {
+            content: "";
+            position: absolute;
+            width: 28px;
+            height: 28px;
+            border: 3px solid var(--teal);
+            pointer-events: none;
+        }
+
+        .big-message.quote:before {
+            left: 0;
+            top: 0;
+            border-right: 0;
+            border-bottom: 0;
+        }
+
+        .big-message.quote:after {
+            right: 0;
+            bottom: 0;
+            border-left: 0;
+            border-top: 0;
+        }
+
+        .topics {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border-block: 1px solid var(--line);
+            margin-top: 10px
+        }
+
+        .topics div {
+            padding: 10px 16px;
+            border-left: 1px solid var(--line);
+            border-top: 1px solid var(--line);
+            font-size: 15px;
+            color: var(--body)
+        }
+
+        .topics div:nth-child(odd) {
+            border-left: 0
+        }
+
+        .topics div:nth-child(-n+2) {
+            border-top: 0
+        }
+
+        .topics-label {
+            font: 750 11px ui-monospace, monospace;
+            letter-spacing: .11em;
+            color: var(--teal);
+            margin: 20px 0 6px
+        }
+
+        /* ── 05 タイムライン ── */
+        .schedule {
+            align-self: center
+        }
+
+        .timeline {
+            margin-top: 26px
+        }
+
+        .tl-row {
+            display: grid;
+            grid-template-columns: 140px 1fr;
+            gap: 18px;
+            align-items: center
+        }
+
+        .times {
+            display: flex;
+            justify-content: space-between;
+            font: 750 12px/1 ui-monospace, monospace;
+            color: var(--muted);
+            margin-bottom: 9px
+        }
+
+        .axis {
+            height: 2px;
+            background: var(--ink);
+            position: relative
+        }
+
+        .axis:before,
+        .axis:after {
+            content: "";
+            position: absolute;
+            top: -5px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--ink)
+        }
+
+        .axis:before {
+            left: 0
+        }
+
+        .axis:after {
+            right: 0
+        }
+
+        .rows {
+            margin-top: 22px;
+            display: grid;
+            gap: 11px
+        }
+
+        .row {
+            display: grid;
+            grid-template-columns: 140px 1fr;
+            gap: 18px;
+            align-items: center
+        }
+
+        .label {
+            font-weight: 850;
+            font-size: 17px
+        }
+
+        .label small {
+            display: block;
+            font: 650 11.5px/1.4 var(--font);
+            color: var(--muted);
+            margin-top: 2px
+        }
+
+        .track {
+            position: relative;
+            height: 38px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, .28);
+            background-image: repeating-linear-gradient(90deg, transparent 0, transparent calc(20% - 1px), var(--line) calc(20% - 1px), var(--line) 20%);
+            overflow: hidden
+        }
+
+        .segments {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            height: 100%
+        }
+
+        .segments span {
+            display: grid;
+            place-items: center;
+            font-size: 12.5px;
+            font-weight: 750;
+            color: var(--body)
+        }
+
+        .shift {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            height: 100%
+        }
+
+        .shift span {
+            display: grid;
+            place-items: center;
+            font-size: 13px;
+            font-weight: 750
+        }
+
+        .shift span+span {
+            border-left: 1px solid var(--ink)
+        }
+
+        .tbd {
+            height: 100%;
+            display: grid;
+            place-items: center;
+            font-size: 13px;
+            font-weight: 750;
+            color: var(--body);
+            background: repeating-linear-gradient(45deg, rgba(39, 37, 34, .055) 0 7px, transparent 7px 15px)
+        }
+
+        .note-start {
+            position: absolute;
+            left: 40%;
+            top: 0;
+            bottom: 0;
+            width: 60%;
+            display: grid;
+            place-items: center;
+            font-size: 13px;
+            font-weight: 750;
+            background: rgba(82, 109, 112, .13);
+            border-left: 2px solid var(--lime)
+        }
+
+        /* ── 06 準備 ── */
+        .prep-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            border-block: 1px solid var(--line);
+            margin-top: 6px
+        }
+
+        .prep-grid article {
+            padding: 20px 22px;
+            border-left: 1px solid var(--line);
+            min-height: 162px
+        }
+
+        .prep-grid article:first-child {
+            border-left: 0
+        }
+
+        .prep-grid p {
+            font-size: 14.5px;
+            line-height: 1.6;
+            margin: 0
+        }
+
+        .prep-grid h3 {
+            font-size: 20px;
+            margin-bottom: 7px
+        }
+
+        /* ── 07 設備 ── */
+        .equip {
+            display: grid;
+            grid-template-columns: 1fr .82fr;
+            gap: 46px;
+            align-items: center
+        }
+
+        .equip-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px
+        }
+
+        .equip-card {
+            min-height: 86px;
+            border: 1px solid var(--line);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 16px;
+            background: rgba(255, 255, 255, .25)
+        }
+
+        .equip-card b {
+            font-size: 16.5px
+        }
+
+        .icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(82, 109, 112, .14);
+            display: grid;
+            place-items: center;
+            flex: 0 0 auto;
+            color: var(--lime)
+        }
+
+        .icon svg {
+            width: 22px;
+            height: 22px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 1.7;
+            stroke-linecap: round;
+            stroke-linejoin: round
+        }
+
+        /* ── 08 登録 ── */
+        .registration {
+            display: grid;
+            grid-template-columns: 1fr 372px;
+            gap: 48px;
+            align-items: center
+        }
+
+        .deadline {
+            border: 1px solid var(--line);
+            border-left: 5px solid var(--teal);
+            background: rgba(255, 255, 255, .4);
+            padding: 13px 18px 15px;
+            margin: 2px 0 20px
+        }
+
+        .deadline .d-label {
+            font: 750 11px ui-monospace, monospace;
+            letter-spacing: .11em;
+            color: var(--teal)
+        }
+
+        .deadline .d-date {
+            font-size: 33px;
+            font-weight: 900;
+            line-height: 1.15;
+            letter-spacing: -.025em;
+            margin-top: 5px
+        }
+
+        .qrbox {
+            display: grid;
+            grid-template-columns: 1fr 116px;
+            gap: 16px;
+            align-items: end
+        }
+
+        .qrmain {
+            border: 1px solid var(--line);
+            padding: 15px;
+            background: #fff
+        }
+
+        .qrmain img,
+        .qrsmall img {
+            display: block;
+            width: 100%;
+            height: auto
+        }
+
+        .qrsmall {
+            border: 1px solid var(--line);
+            padding: 8px;
+            background: #fff
+        }
+
+        .qrcap {
+            font-size: 12px;
+            font-weight: 800;
+            margin-top: 7px
+        }
+
+        /* QRブロック全体をフォームへのリンクにする */
+        .qrlink {
+            display: block;
+            color: inherit;
+            text-decoration: none;
+            -webkit-tap-highlight-color: transparent
+        }
+
+        .qrlink .qrmain {
+            transition: border-color .15s, box-shadow .15s, transform .15s
+        }
+
+        .qrlink:hover .qrmain,
+        .qrlink:focus-visible .qrmain {
+            border-color: var(--teal);
+            box-shadow: 0 4px 16px rgba(22, 34, 77, .16);
+            transform: translateY(-2px)
+        }
+
+        .qrlink:active .qrmain {
+            transform: translateY(0)
+        }
+
+        .qrlink:focus-visible {
+            outline: 2px solid var(--teal);
+            outline-offset: 4px
+        }
+
+        .qrgo {
+            display: block;
+            margin-top: 3px;
+            font-size: 11px;
+            font-weight: 750;
+            color: var(--teal)
+        }
+
+        .url {
+            font: 11px ui-monospace, monospace;
+            color: var(--muted);
+            word-break: break-all;
+            margin-top: 3px
+        }
+
+        /* ── 09 締め ── */
+        .ending {
+            display: grid;
+            grid-template-rows: 1fr;
+            align-items: center;
+            text-align: center
+        }
+
+        .ending .context {
+            justify-content: center
+        }
+
+        .ending h2 {
+            font-size: 48px;
+            line-height: 1.32
+        }
+
+        .ending .close {
+            max-width: 880px;
+            margin: 26px auto 0;
+            font-size: 19px;
+            line-height: 1.8
+        }
+
+        .ending .last {
+            font-size: 24px;
+            font-weight: 900;
+            color: var(--ink);
+            margin: 22px 0 0
+        }
+
+        .contact-label {
+            font-size: 15px;
+            font-weight: 800;
+            color: var(--body);
+            margin: 26px 0 0
+        }
+
+        .contact {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 11px
+        }
+
+        .contact span {
+            padding: 9px 15px;
+            border: 1px solid var(--line);
+            font-size: 14px;
+            font-weight: 750;
+            background: rgba(255, 255, 255, .3)
+        }
+
+        .reply {
+            font-size: 16px;
+            font-weight: 850;
+            color: var(--teal);
+            margin: 13px 0 0
+        }
+
+        /* ── Appendix ── */
+        .appendix-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            align-self: center
+        }
+
+        .appendix-grid article {
+            border-top: 3px solid var(--lime);
+            padding: 15px 18px;
+            background: rgba(255, 255, 255, .23);
+            min-height: 142px
+        }
+
+        .appendix-grid h3 {
+            font-size: 19px;
+            margin-bottom: 7px
+        }
+
+        .appendix-grid p {
+            font-size: 14.5px;
+            line-height: 1.62;
+            margin: 0
+        }
+
+        .staff-layout {
+            display: grid;
+            grid-template-columns: 1fr 330px;
+            gap: 50px;
+            align-items: center
+        }
+
+        .counter,
+        .hint {
+            position: absolute;
+            z-index: 25;
+            bottom: 16px;
+            font: 11px ui-monospace, monospace;
+            letter-spacing: .1em;
+            color: var(--muted)
+        }
+
+        .counter {
+            left: 72px
+        }
+
+        .hint {
+            right: 72px
+        }
+
+        /* ══ チラシ準拠テーマの上書き ══ */
+        /* 白地の面：不透明度たよりの塗りを、寒色の淡いグレーに置き換える */
+        .track,
+        .equip-card,
+        .appendix-grid article,
+        .contact span,
+        .deadline {
+            background-color: #f7f9fd
+        }
+
+        .icon {
+            background: rgba(40, 62, 148, .10)
+        }
+
+        .note-start {
+            background: rgba(40, 62, 148, .11)
+        }
+
+        .tbd {
+            background: repeating-linear-gradient(45deg, rgba(22, 34, 77, .06) 0 7px, transparent 7px 15px)
+        }
+
+        .shift span+span {
+            border-left-color: var(--navy)
+        }
+
+        .venue .vn-corr {
+            fill: rgba(22, 34, 77, .055)
+        }
+
+        /* 表紙：チラシ上段のネイビー面を再現する */
+        .cover {
+            background: linear-gradient(158deg, var(--navy-steel) 0%, var(--navy) 52%, var(--navy-deep) 100%)
+        }
+
+        .cover h1,
+        .cover .subtitle b,
+        .cover-meta b {
+            color: #fff
+        }
+
+        .cover .subtitle {
+            color: rgba(255, 255, 255, .9)
+        }
+
+        .cover .hl {
+            color: var(--warm);
+            font-weight: 850
+        }
+
+        .cover .context:before {
+            background: var(--cyan)
+        }
+
+        .cover .context small {
+            color: var(--cyan)
+        }
+
+        .cover-meta,
+        .cover-meta div {
+            border-color: rgba(255, 255, 255, .22)
+        }
+
+        .cover-meta dt {
+            color: var(--cyan)
+        }
+
+        .cover-meta dd {
+            color: rgba(255, 255, 255, .88)
+        }
+
+        .cover-meta small {
+            color: rgba(255, 255, 255, .6)
+        }
+
+        .cover .footer {
+            border-top-color: rgba(255, 255, 255, .25)
+        }
+
+        .cover .footer p {
+            color: rgba(255, 255, 255, .78)
+        }
+
+        .cover .notice,
+        .cover .art-credit {
+            color: rgba(255, 255, 255, .58)
+        }
+
+        .cover-art {
+            background: none
+        }
+
+        .cover-art:after {
+            display: none
+        }
+
+        .stage:has(.cover.active) .counter,
+        .stage:has(.cover.active) .hint,
+        .cover .slide-no {
+            color: rgba(255, 255, 255, .5)
+        }
+
+        .stage:has(.cover.active) .progress {
+            background: rgba(255, 255, 255, .2)
+        }
+
+        @media print {
+            @page {
+                size: 16in 9in;
+                margin: 0
+            }
+
+            html,
+            body {
+                height: auto;
+                overflow: visible;
+                background: #fff
+            }
+
+            .wrap,
+            .stage,
+            .deck {
+                position: static;
+                width: 1280px;
+                height: auto;
+                transform: none !important;
+                box-shadow: none
+            }
+
+            .grain,
+            .progress,
+            .counter,
+            .hint {
+                display: none
+            }
+
+            .slide {
+                position: relative;
+                width: 1280px;
+                height: 720px;
+                opacity: 1;
+                visibility: visible;
+                break-after: page
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="stage" id="stage">
+            <div class="grain" aria-hidden="true"></div>
+            <div class="progress" aria-hidden="true"><span></span></div>
+            <main class="deck">
+
+                <!-- 01 表紙 -->
+                <section class="slide cover active">
+                    <span class="slide-no"></span>
+                    <div class="cover-copy">
+                        <div class="context key-only"><small>HAKURYO RESEARCH EXCHANGE</small></div>
+                        <h1>HAREx</h1>
+                        <p class="subtitle"><b>白陵研究交流会</b>大学とは、どういうところなのか。<br>
+                            それを、卒業生の研究を入り口にして<span class="hl">白陵生</span>に紹介する一日です。</p>
+                        <dl class="cover-meta">
+                            <div>
+                                <dt>DATE</dt>
+                                <dd><b>2026年9月5日（土）</b>　14:00〜16:30</dd>
+                            </div>
+                            <div>
+                                <dt>PLACE</dt>
+                                <dd><b>白陵の教室</b>　<small>具体的な教室は、参加規模に応じて決まります</small></dd>
+                            </div>
+                            <div>
+                                <dt>DEADLINE</dt>
+                                <dd>発表参加の登録は <b>8月22日（土）</b> まで</dd>
+                            </div>
+                            <div>
+                                <dt>CONTACT</dt>
+                                <dd><b>大谷駿介</b>　<small>LINE ／ u618412k@ecs.osaka-u.ac.jp</small></dd>
+                            </div>
+                        </dl>
+                    </div>
+                    <div class="cover-art" aria-label="人類の知を表す円と、その境界に押し出された小さな突起">
+                        <svg viewBox="0 0 650 720" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M390,380 L529.78,191.09 A235,235 0 0 0 519.71,184.04 Z" fill="#ffffff"
+                                opacity=".13" />
+                            <circle cx="390" cy="380" r="36" fill="#ffffff" opacity=".10" />
+                            <g fill="none" stroke="#ffffff" stroke-width="1.5" opacity=".3">
+                                <circle cx="390" cy="380" r="18" />
+                                <circle cx="390" cy="380" r="27" />
+                                <circle cx="390" cy="380" r="36" />
+                            </g>
+                            <circle cx="390" cy="380" r="10" fill="#ffffff" opacity=".22" />
+                            <path d="M532.06,192.80 A14.35,14.35 0 0 0 517.32,182.48 Z" fill="#ffffff"
+                                opacity=".34" />
+                            <path
+                                d="M517.32,182.48 A235,235 0 1 0 532.06,192.80 A14.35,14.35 0 0 0 517.32,182.48"
+                                fill="none" stroke="#ffffff" stroke-width="2.5" opacity=".42" />
+                            <g fill="#ffffff" opacity=".45" font-size="10.5" text-anchor="end">
+                                <text x="578" y="634">図：Matt Might</text>
+                                <text x="578" y="648">「The Illustrated Guide to a Ph.D.」</text>
+                                <text x="578" y="662">（CC BY-NC）の考え方に基づく</text>
+                            </g>
+                        </svg>
+                    </div>
+                    <footer class="footer">
+                        <p>この資料は、発表者として参加を考えている卒業生向けの案内です。</p>
+                        <p class="notice">URLは検索等では公開していませんので、必要な方の間での共有をお願いします。</p>
+                    </footer>
+                </section>
+
+                <!-- 02 どんなイベントか -->
+                <section class="slide"><span class="slide-no"></span>
+                    <header class="slide-head">
+                        <div class="context">まず、当日の会場の様子からご覧ください <small>OPEN FORMAT</small></div>
+                        <h2>4つの企画が同時に動き、在校生が<span class="mark">好きなところへ出入りします</span></h2>
+                    </header>
+                    <div class="two-col">
+                        <div class="copy">
+                            <p>卒業生が、それぞれの<b>研究や研究分野</b>について発表します。講演・展示・ワークショップが同じ時間帯に並行して開かれ、在校生は気になるものを見て回ります。</p>
+                            <p>進路や勉強のことを卒業生と話せる<b>進路相談スペース</b>も設けます。</p>
+                            <p>大人数の前で一度きり話す発表会ではなく、<b>来てくれた生徒と少人数で何度も話す、交流中心のイベント</b>です。</p>
+                            <p>卒業生ももちろん、自由に見て回ることができます。</p>
+                        </div>
+                        <svg class="venue" viewBox="0 0 600 384" role="img" aria-label="4つの教室と廊下からなる会場の平面図">
+                            <defs>
+                                <marker id="vnA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5"
+                                    orient="auto-start-reverse">
+                                    <path d="M0,0 L10,5 L0,10 Z" />
+                                </marker>
+                                <g id="pp">
+                                    <circle cx="0" cy="-7" r="4" />
+                                    <path d="M-5.6,4 a5.6,5.6 0 0,1 11.2,0 Z" />
+                                </g>
+                            </defs>
+                            <rect class="vn-corr" x="8" y="152" width="584" height="56" />
+                            <rect class="vn-room" x="18" y="16" width="264" height="136" />
+                            <rect class="vn-room" x="318" y="16" width="264" height="136" />
+                            <rect class="vn-room" x="18" y="208" width="264" height="136" />
+                            <rect class="vn-room" x="318" y="208" width="264" height="136" />
+                            <g class="vn-prop">
+                                <rect x="186" y="34" width="80" height="50" />
+                                <rect x="466" y="30" width="46" height="54" />
+                                <rect x="522" y="30" width="46" height="54" />
+                                <rect x="150" y="262" width="112" height="42" />
+                                <circle cx="470" cy="288" r="24" />
+                            </g>
+                            <g class="vn-wall">
+                                <path d="M18,152 L18,16 L282,16 L282,152 L180,152 M120,152 L18,152" />
+                                <path d="M318,152 L318,16 L582,16 L582,152 L480,152 M420,152 L318,152" />
+                                <path d="M18,208 L120,208 M180,208 L282,208 L282,344 L18,344 L18,208" />
+                                <path d="M318,208 L420,208 M480,208 L582,208 L582,344 L318,344 L318,208" />
+                            </g>
+                            <g class="vn-move">
+                                <path d="M150,132 L150,176" />
+                                <path d="M450,132 L450,176" />
+                                <path d="M150,184 L150,228" />
+                                <path d="M450,184 L450,228" />
+                            </g>
+                            <text class="vn-name" x="36" y="44">講演会</text><text class="vn-key" x="36" y="60">TALK</text>
+                            <text class="vn-name" x="336" y="44">展示会</text><text class="vn-key" x="336"
+                                y="60">EXHIBITION</text>
+                            <text class="vn-name" x="36" y="236">ワークショップ</text><text class="vn-key" x="36"
+                                y="252">WORKSHOP</text>
+                            <text class="vn-name" x="336" y="236">進路相談</text><text class="vn-key" x="336" y="252">CAREER
+                                TALK</text>
+                            <g class="vn-alum">
+                                <use href="#pp" x="62" y="112" />
+                                <use href="#pp" x="336" y="112" />
+                                <use href="#pp" x="62" y="316" />
+                                <use href="#pp" x="336" y="316" />
+                            </g>
+                            <g class="vn-you">
+                                <use href="#pp" x="204" y="120" />
+                                <use href="#pp" x="232" y="132" />
+                                <use href="#pp" x="516" y="122" />
+                                <use href="#pp" x="544" y="134" />
+                                <use href="#pp" x="212" y="318" />
+                                <use href="#pp" x="520" y="320" />
+                                <use href="#pp" x="86" y="190" />
+                                <use href="#pp" x="266" y="186" />
+                                <use href="#pp" x="356" y="192" />
+                                <use href="#pp" x="556" y="188" />
+                            </g>
+                            <g class="vn-alum">
+                                <use href="#pp" x="196" y="368" />
+                            </g><text class="vn-leg" x="210" y="372">卒業生（発表者）</text>
+                            <g class="vn-you">
+                                <use href="#pp" x="330" y="368" />
+                            </g><text class="vn-leg" x="344" y="372">在校生</text>
+                        </svg>
+                    </div>
+                </section>
+
+                <!-- 03 発表の形 -->
+                <section class="slide"><span class="slide-no"></span>
+                    <header class="slide-head">
+                        <div class="context">どの形で話すかを自由に選べます <small>THREE STYLES</small></div>
+                        <h2>講演・展示・ワークショップ。<span class="mark">一番興味があるものを。</span></h2>
+                    </header>
+                    <div class="tri">
+                        <svg class="tri-lines" viewBox="0 0 1136 436" preserveAspectRatio="none" aria-hidden="true">
+                            <polygon points="568,87 936,349 200,349" />
+                        </svg>
+                        <article class="tri-card tri-a">
+                            <div class="tri-head"><span class="tri-ico"><svg viewBox="0 0 24 24">
+                                        <rect x="1.5" y="3.5" width="14" height="10" rx="1" />
+                                        <path d="M8.5 13.5v3M5.5 16.5h6" />
+                                        <circle cx="19" cy="7.5" r="2.2" />
+                                        <path d="M15.5 17a3.5 3.5 0 0 1 7 0" />
+                                    </svg></span>
+                                <div><span class="num">01｜TALK</span>
+                                    <h3>講演会</h3>
+                                </div>
+                            </div>
+                            <p>スライドや黒板を用いたプレゼンテーション。</p>
+                            <p class="tri-time">時間：20分以内なら何分間でも可能です。</p>
+                            <p>使ったスライドは展示にも掲示します。</p>
+                        </article>
+                        <article class="tri-card tri-b">
+                            <div class="tri-head"><span class="tri-ico"><svg viewBox="0 0 24 24">
+                                        <rect x="2" y="3" width="13" height="10" rx="1" />
+                                        <rect x="4.5" y="5.5" width="3.5" height="5" />
+                                        <rect x="9.5" y="5.5" width="3" height="3" />
+                                        <path d="M5 13l-1.5 5M12 13l1.5 5" />
+                                        <circle cx="19.5" cy="9" r="2" />
+                                        <path d="M16.5 18a3 3 0 0 1 6 0" />
+                                    </svg></span>
+                                <div><span class="num">02｜EXHIBITION</span>
+                                    <h3>展示会</h3>
+                                </div>
+                            </div>
+                            <p>ポスターや動画、スライドなどで見に来た生徒に説明します。</p>
+                            <p class="tri-time">時間：前半と後半のシフト制</p>
+                            <p>お菓子と飲み物を置いて、雑談に近い雰囲気を想定しています。</p>
+                        </article>
+                        <article class="tri-card tri-c">
+                            <div class="tri-head"><span class="tri-ico"><svg viewBox="0 0 24 24">
+                                        <path
+                                            d="M9.5 2.5v6.5L4.6 18.4a1.6 1.6 0 0 0 1.4 2.4h12a1.6 1.6 0 0 0 1.4-2.4L14.5 9V2.5" />
+                                        <path d="M8 2.5h8" />
+                                        <circle cx="10" cy="16.5" r="1.3" fill="currentColor" stroke="none" />
+                                        <circle cx="14" cy="18.5" r="1" fill="currentColor" stroke="none" />
+                                    </svg></span>
+                                <div><span class="num">03｜WORKSHOP</span>
+                                    <h3>ワークショップ</h3>
+                                </div>
+                            </div>
+                            <p>生徒自身が手を動かして体験できる形です。</p>
+                            <p class="tri-time">時間：指定はありません</p>
+                            <p>内容や進め方など可能性は無限大です。</p>
+                        </article>
+                        <!-- <div class="tri-hub">自由回遊スタイル<small>複数の形式を掛け持ちしても構いません</small></div> -->
+                        <div class="tri-hub">複数の掛け持ち可能です</div>
+                    </div>
+                    <footer class="footer">話す内容はどれも自由です。次のスライドで詳しくご説明します。</footer>
+                </section>
+
+                <!-- 04 話す内容 -->
+                <section class="slide"><span class="slide-no"></span>
+                    <header class="slide-head">
+                        <div class="context">内容は完全にあなた次第です <small>WHAT TO SHARE</small></div>
+                        <h2>
+                            研究室のテーマに限らず、<br>
+                            <span class="mark">自分なりに考え、試してきたこと</span>を持ち寄ってください🔥
+                        </h2>
+                    </header>
+
+                    <div class="two-col">
+                        <div class="copy">
+                            <p>
+                                HARExでは研究を、単に大学で行われている専門的な活動として捉えません。<br>
+                            </p>
+
+                            <p>
+                                そのため、大学での研究テーマ以外でも、<b>私生活で試行錯誤したことや、個人的に突き詰めてきたことも大歓迎です。</b>
+                            </p>
+
+                            <p>
+                                ただ一つ、<b>ご自身の専攻分野がどんな世界なのか</b>も少し紹介してください。<br>
+                                大学のHPにある説明を引っ張ってくるだけでも十分です。<br>
+                                中高生にとって、研究を幅広く捉える機会となり、進路選びの参考になることを期待しています。
+                            </p>
+                        </div>
+
+                        <div>
+                            <blockquote class="big-message quote">
+                                研究とは、<br>
+                                検証の過程を何度も経て、<br>
+                                本質に迫る過程そのもの。
+                            </blockquote>
+
+                            <p class="topics-label">たとえば</p>
+                            <div class="topics">
+                                <div>研究室での研究</div>
+                                <div>卒論で取り組んだこと</div>
+                                <div>趣味を突き詰めた話</div>
+                                <div>私生活で試行錯誤したこと</div>
+                                <div>個人的に調べ続けていること</div>
+                                <div>専攻分野の面白さ／難しさ</div>
+                            </div>
+                        </div>
+                    </div>
+                    <footer class="footer">専門的な話の場合、中高生向けに優しく解説があると聞きやすいと思われますが、可能な範囲で大丈夫です。</footer>
+                </section>
+
+
+                <!-- 05 当日の流れ -->
+                <section class="slide"><span class="slide-no"></span>
+                    <header class="slide-head">
+                        <div class="context">当日の2時間半を、時間の流れで見てみます <small>EVENT SCHEDULE</small></div>
+                        <h2>2時間半のあいだ、<span class="mark">4つの企画が並行して動きます</span></h2>
+                    </header>
+                    <div class="schedule">
+                        <div class="timeline">
+                            <div class="tl-row"><span></span>
+                                <div>
+                                    <div class="times">
+                                        <span>14:00</span><span>14:30</span><span>15:00</span><span>15:30</span><span>16:00</span><span>16:30</span>
+                                    </div>
+                                    <div class="axis"></div>
+                                </div>
+                            </div>
+                            <div class="rows">
+                                <div class="row">
+                                    <div class="label">講演会<small>30分サイクル×5</small></div>
+                                    <div class="track">
+                                        <div class="segments">
+                                            <span>20分＋交代</span><span>20分＋交代</span><span>20分＋交代</span><span>20分＋交代</span><span>20分＋交代</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="label">展示会<small>通しで開催</small></div>
+                                    <div class="track">
+                                        <div class="shift"><span>前半シフト</span><span>後半シフト</span></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="label">ワークショップ</div>
+                                    <div class="track">
+                                        <div class="tbd">全体の組み方を見て、運営側で割り振ります</div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="label">進路相談<small>途中からオープン</small></div>
+                                    <div class="track">
+                                        <div class="note-start">15:00ごろから</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <footer class="footer">発表者自身も自由回遊スタイルで、他の発表を見ることもできます。</footer>
+                </section>
+
+                <!-- 06 準備 -->
+                <section class="slide"><span class="slide-no"></span>
+                    <header class="slide-head">
+                        <div class="context">準備は気負わずできる範囲で<small>PREPARATION</small></div>
+                        <h2>
+                            アットホームな雰囲気で開催するので<br>
+                            <span class="mark">完璧なスライドやポスターは不要です</span>
+                        </h2>
+                    </header>
+                    <div style="display:grid;align-content:center">
+                        <p style="font-size:19px;max-width:980px">
+                            スライドやポスターは <b>最小限で構いません</b>。<br>
+                            動画や実物を用いた説明も自由に可能です。<br>
+                            なお、発表内容に関するデータは運営側で管理しないため、開催までに各自でご準備・ご持参をお願いします。
+                        </p>
+                        <div class="prep-grid">
+                            <article>
+                                <h3>スライドを使う場合</h3>
+                                <p><b>PCはご自身のものをご持参ください。</b>プロジェクターへはHDMIで接続します。講演で使ったスライドは、全体または要所を印刷して展示にも掲示する予定です。
+                                </p>
+                            </article>
+                            <article>
+                                <h3>ポスターを使う場合</h3>
+                                <p>各自で印刷してご持参ください。印刷したスライドを引っ付けて並べる形でも構いません。印刷が難しい場合はご相談ください。</p>
+                            </article>
+                            <article>
+                                <h3>実物を見せる場合</h3>
+                                <p><b>危険を伴わない範囲で</b>、実物を持ち込んでの実演もできます。広さや電源が必要になりそうなときは、事前にお知らせください。</p>
+                            </article>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 07 設備 -->
+                <section class="slide"><span class="slide-no"></span>
+                    <header class="slide-head">
+                        <div class="context">会場にある設備一覧 <small>AVAILABLE EQUIPMENT</small></div>
+                        <h2><span class="mark">PCと発表物をご持参ください</span></h2>
+                    </header>
+                    <div class="equip">
+                        <div class="equip-grid">
+                            <div class="equip-card"><span class="icon"><svg viewBox="0 0 24 24">
+                                        <rect x="2.5" y="7" width="14" height="10" rx="1.5" />
+                                        <circle cx="9.5" cy="12" r="2.6" />
+                                        <path d="M17.5 10.5l4-2.5M17.5 13.5l4 2.5" />
+                                    </svg></span><b>HDMIプロジェクター</b></div>
+                            <div class="equip-card"><span class="icon"><svg viewBox="0 0 24 24">
+                                        <path d="M13 2L5 13.5h5.5L10 22l8-11.5h-5.5z" />
+                                    </svg></span><b>電源</b></div>
+                            <div class="equip-card"><span class="icon"><svg viewBox="0 0 24 24">
+                                        <rect x="2.5" y="4" width="19" height="12" rx="1" />
+                                        <path d="M6 12.5h6M6 16l-1.5 5M18 16l1.5 5" />
+                                    </svg></span><b>黒板</b></div>
+                            <div class="equip-card"><span class="icon"><svg viewBox="0 0 24 24">
+                                        <rect x="2.5" y="7.5" width="19" height="3.5" rx="1" />
+                                        <path d="M5.5 11v9M18.5 11v9" />
+                                    </svg></span><b>展示机</b></div>
+                            <div class="equip-card"><span class="icon"><svg viewBox="0 0 24 24">
+                                        <rect x="3.5" y="3" width="17" height="13" rx="1" />
+                                        <rect x="6" y="5.5" width="5" height="4.5" />
+                                        <rect x="13" y="5.5" width="5" height="4.5" />
+                                        <path d="M7 16l-1.5 5M17 16l1.5 5" />
+                                    </svg></span><b>展示ボード</b></div>
+                            <div class="equip-card"><span class="icon"><svg viewBox="0 0 24 24">
+                                        <path
+                                            d="M2.5 8.5a14 14 0 0 1 19 0M6 12.5a9.5 9.5 0 0 1 12 0M9.5 16.5a5 5 0 0 1 5 0" />
+                                        <circle cx="12" cy="20" r="1.3" fill="currentColor" stroke="none" />
+                                    </svg></span><b>Wi‑Fi</b></div>
+                        </div>
+                        <div class="copy">
+                            <h3>ご自身で持ってくるもの</h3>
+                            <ul class="plain-list">
+                                <li><b>PC本体</b>（運営では用意しません）</li>
+                                <li>発表に使うデータ</li>
+                                <li>ポスター等の印刷物</li>
+                                <li>実演に使う機材</li>
+                            </ul>
+                            <p style="margin-top:15px;font-size:15px">
+                                HDMI以外の端子をお使いの場合は、変換アダプタもお持ちください。特殊な機材や広いスペースが必要なときは、事前に大谷までご相談ください。</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 08 登録 -->
+                <section class="slide"><span class="slide-no"></span>
+                    <header class="slide-head">
+                        <div class="context">参加登録の方法を説明します <small>REGISTRATION</small></div>
+                        <h2>QRコードから。<br>
+                            <span class="mark">変更修正はいつでも可能です。</span>
+                        </h2>
+                    </header>
+                    <div class="registration">
+                        <div>
+                            <p><b>参加費：無料</b>　<span style="font-size:15px">※交通費等は各自負担です。</span></p>
+                            <div class="deadline">
+                                <div class="d-label">REGISTRATION DEADLINE</div>
+                                <div class="d-date">登録〆切：2026年8月22日（土）</div>
+                            </div>
+                            <p>内容の変更や修正がある場合は、もう一度回答してください。</p>
+                            <p style="margin-top:13px;font-size:15.5px">参加のキャンセルは、フォーム内にある「参加取り消しフォーム」から可能です。</p>
+                        </div>
+                        <a class="qrlink" href="https://forms.gle/YYKLUGPnrW2Dq9Mb6" target="_blank"
+                            rel="noopener noreferrer" aria-label="参加登録フォームを開く">
+                            <div class="qrmain"><img
+                                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQgAAAEIAQAAAACLjVdSAAABlklEQVR4nO2ZwW7DMAxD+Yr8/y9zB0mOVwzoqaowNy2KwOWBEWSScrBeXI9XgC/iHyMuibizMBbZMGt1CtO2eshSPD+WLGKlVqcwbURAdoMQOGpSq6OYtiIshC0h/43o4fFJxLXdl3QYzq5HPD1RELyktJHHFIRcreCnT/09hWkPYt8Zwsgqg2nlMQhB2IqQkZGiJtyIHh4jEEQ/ZNpY/aGMZpyWx+44aq3KrKrIc5j2IQDsLEZEU24RmcS0B2HLELHDiCiFjc/L61gxxz0pye0wU5g25rHYHb+st3LZaXp6ZdyIKS411ZgymTFMG/VDYKIjUjvqO4zp+xG4fpFycslY5hPzxyODBlkOyy4xDQsexLQBccXOyMlWqj7ximpTmPbp6Ta2hJaqmsZtPKYgNpNdUaRSe+yfKUw7/VaSVmInDw6P9NvtfB1H/PA21h3nL5lPQ1QzdKCMY408piC282TWq5e85dB5Py9LMd+Gz1iRSAYyfSNiO1+PtjDCpLecqadpMCGfyr5YjTKFaXv++CiPL2Im4geNxrIVOxjxggAAAABJRU5ErkJggg=="
+                                    alt="参加登録フォームQRコード"></div>
+                            <div class="qrcap">参加登録フォーム<span class="qrgo">タップで開く ↗</span></div>
+                            <div class="url">https://forms.gle/YYKLUGPnrW2Dq9Mb6</div>
+                        </a>
+                    </div>
+                </section>
+
+                <!-- 09 最後に -->
+                <section class="slide ending"><span class="slide-no"></span>
+                    <div>
+                        <div class="context">HARExは校内限定イベントです <small>WHAT WE WANT TO SHARE</small></div>
+                        <h2>それぞれの<span class="mark">「大学生のリアル」</span>を、<br> <span class="mark">研究を題材に</span>持ち寄る場</h2>
+                        <p class="close">
+                            大学生って大学でどんなことをしているのだろうか。<br>中高生にとって、研究を幅広く捉える機会となり、<br>
+                            進路選びの参考になることを期待しています。
+                        </p>
+                        <p class="last">友達と母校で集まれる場としてもご活用ください。</p>
+                        <p class="contact-label">質問や気になる点は：</p>
+                        <div class="contact"><span>LINE：大谷駿介</span><span>Mail：u618412k@ecs.osaka-u.ac.jp</span></div>
+                        <p class="contact-label">すぐに返信します！</p>
+                    </div>
+                </section>
+
+                <!-- A1 当日の補足 -->
+                <section class="slide"><span class="slide-no"></span>
+                    <header class="slide-head">
+                        <div class="context key-only"><small>EVENT NOTES</small></div>
+                        <h2>いくつか<span class="mark">補足です</span></h2>
+                    </header>
+                    <div style="display:grid;align-content:center">
+                        <p class="lede">撮影の可否・PDFへの掲載可否・名刺の記載内容は、後日まとめてアンケートで伺います。いま決めていただくことはありません。</p>
+                        <div class="appendix-grid">
+                            <article>
+                                <h3>発表内容の注意点</h3>
+                                <p>校内限定イベントで、写真撮影も禁止としていますが、念のため機密情報などは発表しないようにお願いします。</p>
+                            </article>
+                            <article>
+                                <h3>写真撮影</h3>
+                                <p>一般の参加者による撮影は<b>原則禁止</b>です。運営の記録用と、学校の広報のための撮影は行う場合があります。研究内容が写る場合は、当日各スペースに可否を表示する予定です。
+                                </p>
+                            </article>
+                            <article>
+                                <h3>終了後のPDF</h3>
+                                <p>当日来られなかった在校生向けに、発表の様子をまとめたPDFを作る予定です。写真・発表タイトル・概要・スライドの一部などを載せます。</p>
+                            </article>
+                            <article>
+                                <h3>発表者の名刺</h3>
+                                <p>当日ネックストラップに入れたり、（任意で）在校生に手渡しするために使用します。運営側で用意しますが、ご自身の名刺がある場合はそちらをお使いいただいても構いません。</p>
+                            </article>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- A2 運営メンバー -->
+                <section class="slide"><span class="slide-no"></span>
+                    <header class="slide-head">
+                        <div class="context key-only"><small>STAFF PARTICIPATION</small></div>
+                        <h2><span class="mark">運営メンバー募集中</span></h2>
+                    </header>
+                    <div class="staff-layout">
+                        <div>
+                            <p style="font-size:19px">
+                                イベント内容の充実、開催に向けた準備、当日の裏方作業などをするメンバーを募集しています。<br>
+                                <b>発表なしでも登録することが可能です</b>ので、当日発表なしで参加されたい方もぜひ運営メンバーに加わってください！
+                            </p>
+                            <ul class="plain-list">
+                                <li>参加者の受付・把握</li>
+                                <li>資料の整理・管理</li>
+                                <li>会場のご案内</li>
+                                <li>当日の裏方作業</li>
+                                <li>そのほか、簡単な運営の補助</li>
+                            </ul>
+                        </div>
+                        <a class="qrlink" href="https://forms.gle/cjLoA4tKZN4CbxaV6" target="_blank"
+                            rel="noopener noreferrer" aria-label="HAREx運営メンバー登録フォームを開く">
+                            <div class="qrmain"><img
+                                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQgAAAEIAQAAAACLjVdSAAABiUlEQVR4nO2ZwZICQQhDX6z5/1/OHoC2dQ+elqG2ndFSMYcUBSHNyHy4Hp8AX8Q/Rlyg+GZkQM53RacwbcsHBtCeDuGKjmHalw8EBsen7EhRRMcw7UdEm5ismNt4DEEok6ElHvfwuBVxQZWDldKxpLSRxxQErt7w211/T2Hag5B//RTWpiBTmLYhlDevfVKRQUzbEDloKyeiquQ4/7EapMpCLkuW0SlMO/16GvScLDImysNzmHYiLISdiTASOX+nMe1AOCpCCuFQWndO9OtXnlVqxKaeWHWcG8O0D6EwYGKrjGgZztQPxWlfKapeSTlVP4CtQ6jS0Hn6IWdlbP5jrULQcf7jAZbADlOqnDXO8CimDQgZWWnEXEe557Sdw7Rx3ppanVJCYmreTGHa6dchFiFe6/UsnDYeUxDbfr1U1TVeOPB8u+3XS0WErOfEmcK0MR9xeduV+blWnsK0HaF82VEe8SRmItM/ROz79ZIOradR5+0/LtaACRnVy4pZp83bt/36bTy+iJmIH4PnpBy4N/90AAAAAElFTkSuQmCC"
+                                    alt="HAREx運営メンバー登録フォームQRコード"></div>
+                            <div class="qrcap">HAREx運営メンバー登録フォーム<span class="qrgo">タップで開く ↗</span></div>
+                            <div class="url">https://forms.gle/cjLoA4tKZN4CbxaV6</div>
+                        </a>
+                    </div>
+                </section>
+
+            </main>
+            <div class="counter"></div>
+            <div class="hint">← →　SPACE　／　SWIPE</div>
+        </div>
+    </div>
+    <script>
+        const W = 1280, H = 720, stage = document.querySelector('#stage'), slides = [...document.querySelectorAll('.slide')], counter = document.querySelector('.counter'), bar = document.querySelector('.progress span'); let current = 0, touchX = 0;
+        function fit() { const s = Math.min(innerWidth / W, innerHeight / H), x = (innerWidth - W * s) / 2, y = (innerHeight - H * s) / 2; stage.style.transform = `translate(${x}px,${y}px) scale(${s})` }
+        slides.forEach((slide, i) => { const n = slide.querySelector('.slide-no'); if (n) n.textContent = String(i + 1).padStart(2, '0') });
+        function show(i) { i = Math.max(0, Math.min(slides.length - 1, i)); slides.forEach((s, n) => s.classList.toggle('active', n === i)); current = i; counter.textContent = `${String(i + 1).padStart(2, '0')} / ${String(slides.length).padStart(2, '0')}`; bar.style.width = `${(i + 1) / slides.length * 100}%`; history.replaceState(null, '', `#slide-${i + 1}`) }
+        addEventListener('resize', fit, { passive: true }); addEventListener('orientationchange', () => setTimeout(fit, 80)); if (window.visualViewport) visualViewport.addEventListener('resize', fit, { passive: true });
+        addEventListener('keydown', e => { if (['ArrowRight', 'ArrowDown', ' '].includes(e.key)) { e.preventDefault(); show(current + 1) } if (['ArrowLeft', 'ArrowUp'].includes(e.key)) { e.preventDefault(); show(current - 1) } if (e.key === 'Home') show(0); if (e.key === 'End') show(slides.length - 1) });
+        addEventListener('touchstart', e => touchX = e.touches[0].clientX, { passive: true }); addEventListener('touchend', e => { const dx = e.changedTouches[0].clientX - touchX; if (Math.abs(dx) > 50) show(current + (dx < 0 ? 1 : -1)) }, { passive: true });
+        const m = location.hash.match(/slide-(\d+)/); current = m ? Math.max(0, Math.min(slides.length - 1, Number(m[1]) - 1)) : 0; fit(); show(current);
+    </script>
+</body>
+
+</html>
