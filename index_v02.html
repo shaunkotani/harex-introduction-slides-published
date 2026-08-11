@@ -1904,7 +1904,7 @@
 
             </main>
             <div class="counter"></div>
-            <div class="hint">← →　SPACE　／　SWIPE　／　PINCH</div>
+            <div class="hint">← →　SPACE　／　SWIPE</div>
         </div>
     </div>
     <script>
@@ -1925,25 +1925,12 @@
             railInd.style.width = b.offsetWidth + 'px';
             railInd.style.transform = `translateX(${b.offsetLeft}px)`;
         }
-        // ピンチ拡大中か（visualViewport.scale は指での拡大率。ブラウザ非対応なら常に等倍扱い）
-        function zoomed() { const v = window.visualViewport; return !!v && v.scale > 1.05 }
-        // 拡大中は再フィットしない。倍率が変わるたびに版面が動くと、PDFのように拡大して読めないため
-        function fit() { if (zoomed()) return; const s = Math.min(innerWidth / W, innerHeight / H), x = (innerWidth - W * s) / 2, y = (innerHeight - H * s) / 2; stage.style.transform = `translate(${x}px,${y}px) scale(${s})` }
+        function fit() { const s = Math.min(innerWidth / W, innerHeight / H), x = (innerWidth - W * s) / 2, y = (innerHeight - H * s) / 2; stage.style.transform = `translate(${x}px,${y}px) scale(${s})` }
         slides.forEach((slide, i) => { const n = slide.querySelector('.slide-no'); if (n) n.textContent = String(i + 1).padStart(2, '0') });
         function show(i) { i = Math.max(0, Math.min(slides.length - 1, i)); slides.forEach((s, n) => s.classList.toggle('active', n === i)); current = i; counter.textContent = `${String(i + 1).padStart(2, '0')} / ${String(slides.length).padStart(2, '0')}`; syncRail(i); history.replaceState(null, '', `#slide-${i + 1}`) }
         addEventListener('resize', fit, { passive: true }); addEventListener('orientationchange', () => setTimeout(fit, 80)); if (window.visualViewport) visualViewport.addEventListener('resize', fit, { passive: true });
         addEventListener('keydown', e => { if (['ArrowRight', 'ArrowDown', ' '].includes(e.key)) { e.preventDefault(); show(current + 1) } if (['ArrowLeft', 'ArrowUp'].includes(e.key)) { e.preventDefault(); show(current - 1) } if (e.key === 'Home') show(0); if (e.key === 'End') show(slides.length - 1) });
-        // スワイプ判定。ピンチ（2本指）と拡大中の指送りは、ページ送りに使わない
-        let touchY = 0, multi = false;
-        addEventListener('touchstart', e => { if (e.touches.length > 1) multi = true; else { touchX = e.touches[0].clientX; touchY = e.touches[0].clientY } }, { passive: true });
-        addEventListener('touchmove', e => { if (e.touches.length > 1) multi = true }, { passive: true });
-        addEventListener('touchend', e => {
-            if (e.touches.length) return;                 // まだ指が残っている
-            const wasMulti = multi; multi = false;
-            if (wasMulti || zoomed()) return;             // 拡大中は指で表示位置を動かせるようにする
-            const t = e.changedTouches[0], dx = t.clientX - touchX, dy = t.clientY - touchY;
-            if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) show(current + (dx < 0 ? 1 : -1));
-        }, { passive: true });
+        addEventListener('touchstart', e => touchX = e.touches[0].clientX, { passive: true }); addEventListener('touchend', e => { const dx = e.changedTouches[0].clientX - touchX; if (Math.abs(dx) > 50) show(current + (dx < 0 ? 1 : -1)) }, { passive: true });
         const m = location.hash.match(/slide-(\d+)/); current = m ? Math.max(0, Math.min(slides.length - 1, Number(m[1]) - 1)) : 0; fit(); show(current);
     </script>
 </body>
