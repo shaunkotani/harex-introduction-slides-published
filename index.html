@@ -348,6 +348,13 @@
             margin-bottom: 7px
         }
 
+        .cover-logo {
+            display: block;
+            width: min(374px, 100%);
+            height: auto;
+            margin-bottom: 16px
+        }
+
         .cover-meta {
             margin: 26px 0 0;
             border-top: 1px solid var(--line)
@@ -1429,7 +1436,7 @@
                     <span class="slide-no"></span>
                     <div class="cover-copy">
                         <div class="context key-only"><small>HAKURYO RESEARCH EXCHANGE</small></div>
-                        <h1>HAREx</h1>
+                        <img class="cover-logo" src="HAREx-white.svg" alt="HAREx">
                         <p class="subtitle"><b>白陵研究交流会</b>大学とは、どういうところなのか。<br>
                             卒業生の研究を入り口にして<span class="hl">白陵生</span>に紹介する一日です。</p>
                         <dl class="cover-meta">
@@ -1478,17 +1485,17 @@
                 <section class="slide" data-nav="会場の様子"><span class="slide-no"></span>
                     <header class="slide-head">
                         <div class="context">当日の会場の様子 <small>OPEN FORMAT</small></div>
-                        <h2>4つの企画を同時開催。<span class="mark">自由回遊スタイルです。
+                        <h2>3つの企画を同時開催。<span class="mark">自由回遊スタイルです。
                             </span></h2>
                     </header>
                     <div class="two-col">
                         <div class="copy">
                             <p>卒業生が、それぞれの<b>研究や研究分野</b>について発表します。講演・展示・ワークショップが同じ時間帯に並行して開かれ、在校生は気になるものを見て回ります。</p>
-                            <p>進路や勉強のことを卒業生と話せる<b>進路相談スペース</b>も設けます。</p>
-                            <p>大人数の前で一度きり話す発表会ではなく、<b>来てくれた生徒と少人数で何度も話す、交流中心のイベント</b>です。</p>
+                            <p>大人数の前で一度きり話す発表会ではなく、<b>来てくれた生徒と少人数で気軽に話す、交流中心のイベント</b>です。</p>
                             <p>卒業生ももちろん、自由に見て回ることができます。</p>
+                            <p><b>友達と母校で集まれる場としてもご活用ください。</b></p>
                         </div>
-                        <svg class="venue" viewBox="0 0 600 384" role="img" aria-label="4つの教室と廊下からなる会場の平面図">
+                        <svg class="venue" viewBox="0 0 600 384" role="img" aria-label="3つの教室と廊下からなる会場の平面図">
                             <defs>
                                 <marker id="vnA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5"
                                     orient="auto-start-reverse">
@@ -1503,38 +1510,31 @@
                             <rect class="vn-room" x="18" y="16" width="264" height="136" />
                             <rect class="vn-room" x="318" y="16" width="264" height="136" />
                             <rect class="vn-room" x="18" y="208" width="264" height="136" />
-                            <rect class="vn-room" x="318" y="208" width="264" height="136" />
                             <g class="vn-prop">
                                 <rect x="186" y="34" width="80" height="50" />
                                 <rect x="466" y="30" width="46" height="54" />
                                 <rect x="522" y="30" width="46" height="54" />
                                 <rect x="150" y="262" width="112" height="42" />
-                                <circle cx="470" cy="288" r="24" />
                             </g>
                             <g class="vn-wall">
                                 <path d="M18,152 L18,16 L282,16 L282,152 L180,152 M120,152 L18,152" />
                                 <path d="M318,152 L318,16 L582,16 L582,152 L480,152 M420,152 L318,152" />
                                 <path d="M18,208 L120,208 M180,208 L282,208 L282,344 L18,344 L18,208" />
-                                <path d="M318,208 L420,208 M480,208 L582,208 L582,344 L318,344 L318,208" />
                             </g>
                             <g class="vn-move">
                                 <path d="M150,132 L150,176" />
                                 <path d="M450,132 L450,176" />
                                 <path d="M150,184 L150,228" />
-                                <path d="M450,184 L450,228" />
                             </g>
                             <text class="vn-name" x="36" y="44">講演会</text><text class="vn-key" x="36" y="60">TALK</text>
                             <text class="vn-name" x="336" y="44">展示会</text><text class="vn-key" x="336"
                                 y="60">EXHIBITION</text>
                             <text class="vn-name" x="36" y="236">ワークショップ</text><text class="vn-key" x="36"
                                 y="252">WORKSHOP</text>
-                            <text class="vn-name" x="336" y="236">進路相談</text><text class="vn-key" x="336" y="252">CAREER
-                                TALK</text>
                             <g class="vn-alum">
                                 <use href="#pp" x="62" y="112" />
                                 <use href="#pp" x="336" y="112" />
                                 <use href="#pp" x="62" y="316" />
-                                <use href="#pp" x="336" y="316" />
                             </g>
                             <g class="vn-you">
                                 <use href="#pp" x="204" y="120" />
@@ -1542,18 +1542,17 @@
                                 <use href="#pp" x="516" y="122" />
                                 <use href="#pp" x="544" y="134" />
                                 <use href="#pp" x="212" y="318" />
-                                <use href="#pp" x="520" y="320" />
                                 <use href="#pp" x="86" y="190" />
                                 <use href="#pp" x="266" y="186" />
                                 <use href="#pp" x="356" y="192" />
                                 <use href="#pp" x="556" y="188" />
                             </g>
                             <g class="vn-alum">
-                                <use href="#pp" x="196" y="368" />
-                            </g><text class="vn-leg" x="210" y="372">卒業生（発表者）</text>
+                                <use href="#pp" x="402" y="272" />
+                            </g><text class="vn-leg" x="416" y="276">卒業生（発表者）</text>
                             <g class="vn-you">
-                                <use href="#pp" x="330" y="368" />
-                            </g><text class="vn-leg" x="344" y="372">在校生</text>
+                                <use href="#pp" x="402" y="312" />
+                            </g><text class="vn-leg" x="416" y="316">在校生</text>
                         </svg>
                     </div>
                 </section>
@@ -1625,7 +1624,7 @@
                 <section class="slide" data-nav="当日の流れ"><span class="slide-no"></span>
                     <header class="slide-head">
                         <div class="context">タイムスケジュール <small>EVENT SCHEDULE</small></div>
-                        <h2>2時間半のあいだ、<span class="mark">4つの企画が並行して動きます</span></h2>
+                        <h2>2時間半のあいだ、<span class="mark">3つの企画が並行して動きます</span></h2>
                     </header>
                     <div class="schedule">
                         <div class="timeline">
@@ -1658,12 +1657,6 @@
                                         <div class="tbd">全体の組み方を見て、運営側で割り振ります</div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="label">進路相談<small>途中からオープン</small></div>
-                                    <div class="track">
-                                        <div class="note-start">15:00ごろから</div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -1691,7 +1684,7 @@
                             </p>
 
                             <p>
-                                ただ一つ、<b>ご自身の専攻分野がどんな世界なのか</b>も少し紹介してください。<br>
+                                そして、<b>ご自身の専攻分野がどんな世界なのか</b>も少し紹介してください。<br>
                                 大学のHPにある説明を引っ張ってくるだけでも十分です。<br>
                                 中高生にとって、研究を幅広く捉える機会となり、進路選びの参考になることを期待しています。
                             </p>
@@ -1866,7 +1859,6 @@
                             大学生って大学でどんなことをしているのだろうか。<br>中高生にとって、研究を幅広く捉える機会となり、<br>
                             進路選びの参考になることを期待しています。
                         </p>
-                        <p class="last">友達と母校で集まれる場としてもご活用ください。</p>
                         <p class="contact-label">質問や気になる点はこちらまで：</p>
                         <div class="contact"><span>LINE：大谷駿介</span><span>Mail：u618412k@ecs.osaka-u.ac.jp</span></div>
                     </div>
